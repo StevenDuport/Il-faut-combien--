@@ -1,9 +1,7 @@
 .app {
-  width: 500px;
-  margin: 1em auto;
+  width: 100vw;
+  height: 100vh;
   text-align: center;
+  background-color: #235df0;
 }
 
-.app img {
-  max-width: 150px;
-}

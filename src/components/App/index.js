@@ -1,16 +1,13 @@
-// == Import
-import reactLogo from './react-logo.svg';
 import './styles.css';
+import BoxsList from '../BoxsList';
 
-// == Composant
 function App() {
   return (
     <div className="app">
-      <img src={reactLogo} alt="react logo" />
-      <h1>Composant : App</h1>
+      <h1 className='app_title'>Il faut combien ?</h1>
+      <BoxsList/>
     </div>
   );
 }
 
-// == Export
 export default App;
