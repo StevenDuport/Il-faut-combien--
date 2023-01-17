@@ -2,6 +2,11 @@
   width: 100vw;
   height: 100vh;
   text-align: center;
-  background-color: #235df0;
+}
+
+.app_title{
+  margin-top: 1em;
+  color: white;
+  font-size: 2.5em;
 }
 

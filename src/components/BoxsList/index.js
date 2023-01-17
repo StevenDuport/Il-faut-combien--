@@ -7,6 +7,7 @@ function BoxsList() {
   const items = useSelector(state => state.user.items);
   const selectedItems = useSelector(state => state.user.selectedItems);
   const [ratio, setRatio] = useState(null);
+  const sizes = selectedItems.map(i => i.taille);
   const dispatch = useDispatch();
 
   const handleClick = item => {
@@ -25,8 +26,6 @@ function BoxsList() {
     dispatch(clearSelectedItems());
   };
 
-
-
   useEffect(() => {
     if (selectedItems.length === 2) {
       const sizes = selectedItems.map(i => i.taille);
@@ -37,23 +36,25 @@ function BoxsList() {
       setRatio(formattedRatio);
     }
   }, [selectedItems]);
-  const sizes = selectedItems.map(i => i.taille);
+
+
   return (
-    <div className="item-list-container">
+    <div className="container">
       <div className="boxs">
-        <div className="selected-items">
-          {selectedItems.map(item => (
-            <button key={item.id} className="selected">
-              {item.titre}
-            </button>
-          ))}
-        </div>
+      {Array(2).fill(0).map((_, index) => {
+        const selectedItem = selectedItems[index];
+        return (
+          <div key={index} className="selected-items">
+            {selectedItem ? selectedItem.titre : null}
+          </div>
+        );
+      })}
       </div>
       {
         selectedItems.length === 2 ? (
-          <div>
+          <p>
             Il faut {ratio} {selectedItems.find(i => i.taille === Math.min(...sizes)).titre} pour atteindre la taille de {selectedItems.find(i => i.taille === Math.max(...sizes)).titre}
-          </div>
+          </p>
         ) : null
       }
       <div className="item-list">
@@ -63,7 +64,10 @@ function BoxsList() {
             className={`item-button ${selectedItems.includes(item) ? 'selected' : ''}`}
             onClick={() => handleClick(item)}
           >
-            {item.titre}
+            {item.titre} 
+            
+              {selectedItems.includes(item) ? <div className='counter'>{selectedItems.findIndex(i => i.id === item.id) + 1 }</div> : null}
+            
           </button>
         ))}
       </div>
