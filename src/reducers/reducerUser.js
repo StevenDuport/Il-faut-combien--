@@ -8,7 +8,7 @@ const initialState = {
   items: [
     { id: 1, titre: "tour Eiffel", taille: 30000 },
     { id: 2, titre: "Homme", taille: 175 },
-    { id: 3, titre: "Lune", taille: 173740000 },
+    { id: 3, titre: "Lune", taille: 173740000,image: require("../assets/images/moon.png") },
     { id: 4, titre: "Iphone 14", taille: 14 },
     { id: 5, titre: "Fourmi", taille: 0.5 },
     { id: 6, titre: "Baleine bleue", taille: 2400 },

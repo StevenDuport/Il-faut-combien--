@@ -1,9 +1,14 @@
 @use 'reset';
 @use 'vars';
 
+::-webkit-scrollbar{
+  width: 0;
+}
+
 body {
   font-family: sans-serif;
-  background-color: #235df0;
+  background: rgb(35,93,240);
+  background: radial-gradient(circle, rgba(35,93,240,1) 0%, rgba(25,82,226,1) 100%);
   font-family: 'Alata', sans-serif;
 }
 

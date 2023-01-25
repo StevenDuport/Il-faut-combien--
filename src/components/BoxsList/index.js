@@ -45,32 +45,41 @@ function BoxsList() {
         const selectedItem = selectedItems[index];
         return (
           <div key={index} className="selected-items">
-            {selectedItem ? selectedItem.titre : null}
+            {selectedItem ? 
+              (<>
+                <img src={selectedItem.image} className="selected-items-image"/>
+                <p className="selected-items-title">{selectedItem.titre}</p>
+              </>) 
+              : null
+            }
           </div>
         );
       })}
       </div>
       {
         selectedItems.length === 2 ? (
-          <p>
+          <p className="item-result">
             Il faut {ratio} {selectedItems.find(i => i.taille === Math.min(...sizes)).titre} pour atteindre la taille de {selectedItems.find(i => i.taille === Math.max(...sizes)).titre}
           </p>
-        ) : null
+        ) : <div className='item-result'/>
       }
-      <div className="item-list">
-        {items.map(item => (
-          <button
-            key={item.id}
-            className={`item-button ${selectedItems.includes(item) ? 'selected' : ''}`}
-            onClick={() => handleClick(item)}
-          >
-            {item.titre} 
-            
-              {selectedItems.includes(item) ? <div className='counter'>{selectedItems.findIndex(i => i.id === item.id) + 1 }</div> : null}
-            
-          </button>
-        ))}
-      </div>
+        <div className="item-list">
+          <div className="item-list-container">
+              {items.map(item => (
+                <div key={item.id} className='test-item'>
+                  <button
+                    className={`item-button ${selectedItems.includes(item) ? 'selected' : ''}`}
+                    onClick={() => handleClick(item)}
+                  >
+                    <img src={item.image} className="item-image"/>
+                      {selectedItems.includes(item) ? <div className='counter'>{selectedItems.findIndex(i => i.id === item.id) + 1 }</div> : null}
+                  </button>
+                  <p className="item-p">{item.titre}</p> 
+                </div>
+              ))}
+            </div>
+        </div>
+     
       <button onClick={handleClearClick} className="clear-container">Effacer</button>
     </div>
   );
