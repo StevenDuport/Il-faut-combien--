@@ -6,16 +6,16 @@ import {
 
 const initialState = {
   items: [
-    { id: 1, titre: "tour Eiffel", taille: 30000 },
-    { id: 2, titre: "Homme", taille: 175 },
-    { id: 3, titre: "Lune", taille: 173740000,image: require("../assets/images/moon.png") },
-    { id: 4, titre: "Iphone 14", taille: 14 },
-    { id: 5, titre: "Fourmi", taille: 0.5 },
-    { id: 6, titre: "Baleine bleue", taille: 2400 },
-    { id: 7, titre: "Burj Khalifa", taille: 82800 },
-    { id: 8, titre: "L'Everest", taille: 884800 },
-    { id: 9, titre: "Girafe", taille: 420 },
-    { id: 10, titre: "Cellule", taille: 0.005 },
+    { id: 1, the: "de la", titre: "Tour Eiffel", taille: 30000, image: require("../assets/images/eiffel.png") },
+    { id: 2, the: "de l'", titre: "Homme", taille: 175 },
+    { id: 3, the: "de la",titre: "Lune", taille: 173740000, image: require("../assets/images/moon.png") },
+    { id: 4, the: "de l'", titre: "Iphone 14", taille: 14, image: require("../assets/images/iphone.png") },
+    { id: 5, the: "d'une",titre: "Fourmi", taille: 0.5, image: require("../assets/images/fourmi.png") },
+    { id: 6, the: "de la",titre: "Baleine bleue", taille: 2400, image: require("../assets/images/baleine.png") },
+    { id: 8, the: "de",titre: "L'Everest", taille: 884800, image: require("../assets/images/everest.png") },
+    { id: 9, the: "d'une",titre: "Girafe", taille: 420, image: require("../assets/images/girafe.png") },
+    { id: 7, the: "du",titre: "Burj Khalifa", taille: 82800, image: require("../assets/images/burj.png") },
+    { id: 10, the: "d'une",titre: "Cellule", taille: 0.005, image: require("../assets/images/cellule.png") },
   ],
   selectedItems: [],
 };

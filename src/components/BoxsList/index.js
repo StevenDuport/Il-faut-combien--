@@ -7,6 +7,7 @@ function BoxsList() {
   const items = useSelector(state => state.user.items);
   const selectedItems = useSelector(state => state.user.selectedItems);
   const [ratio, setRatio] = useState(null);
+  const [infosItem, setInfosItem] = useState(false);
   const sizes = selectedItems.map(i => i.taille);
   const dispatch = useDispatch();
 
@@ -20,6 +21,10 @@ function BoxsList() {
         alert('Vous ne pouvez sélectionner que 2 éléments.');
       }
     }
+  };
+
+  const toggleInfosItem = () => {
+    setInfosItem(!infosItem);
   };
 
   const handleClearClick = () => {
@@ -47,8 +52,15 @@ function BoxsList() {
           <div key={index} className="selected-items">
             {selectedItem ? 
               (<>
-                <img src={selectedItem.image} className="selected-items-image"/>
-                <p className="selected-items-title">{selectedItem.titre}</p>
+                <img src={selectedItem.image} className="selected-items-image" alt={selectedItem.image}/>
+                <h2 className="selected-items-title">{selectedItem.titre}</h2>
+                <button 
+                  className="item-infos"
+                  onClick={toggleInfosItem}
+                >
+                  info
+                </button>
+                <div className={infosItem ? "infos-on" : "infos-of"}>{selectedItem.titre} {selectedItem.taille} cm</div>
               </>) 
               : null
             }
@@ -59,7 +71,7 @@ function BoxsList() {
       {
         selectedItems.length === 2 ? (
           <p className="item-result">
-            Il faut {ratio} {selectedItems.find(i => i.taille === Math.min(...sizes)).titre} pour atteindre la taille de {selectedItems.find(i => i.taille === Math.max(...sizes)).titre}
+            Il faut {ratio} {selectedItems.find(i => i.taille === Math.min(...sizes)).titre.toLowerCase()} pour atteindre la taille {selectedItems.find(i => i.taille === Math.max(...sizes)).the} {selectedItems.find(i => i.taille === Math.max(...sizes)).titre.toLowerCase()}.
           </p>
         ) : <div className='item-result'/>
       }
@@ -74,7 +86,7 @@ function BoxsList() {
                     <img src={item.image} className="item-image"/>
                       {selectedItems.includes(item) ? <div className='counter'>{selectedItems.findIndex(i => i.id === item.id) + 1 }</div> : null}
                   </button>
-                  <p className="item-p">{item.titre}</p> 
+                  <p>{item.titre}</p> 
                 </div>
               ))}
             </div>
