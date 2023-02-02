@@ -7,7 +7,7 @@ function BoxsList() {
   const items = useSelector(state => state.user.items);
   const selectedItems = useSelector(state => state.user.selectedItems);
   const [ratio, setRatio] = useState(null);
-  const [infosItem, setInfosItem] = useState(false);
+  const [infosItem, setInfosItem] = useState(null);
   const sizes = selectedItems.map(i => i.taille);
   const dispatch = useDispatch();
 
@@ -23,8 +23,12 @@ function BoxsList() {
     }
   };
 
-  const toggleInfosItem = () => {
-    setInfosItem(!infosItem);
+  const toggleInfosItem = id => {
+    setInfosItem(id === infosItem ? null : id);
+  };
+
+  const infosItemOff = () =>{
+    setInfosItem(null)
   };
 
   const handleClearClick = () => {
@@ -56,11 +60,12 @@ function BoxsList() {
                 <h2 className="selected-items-title">{selectedItem.titre}</h2>
                 <button 
                   className="item-infos"
-                  onClick={toggleInfosItem}
+                  onClick={() => toggleInfosItem(selectedItem.id)}
+                  onBlur={infosItemOff}
                 >
                   info
                 </button>
-                <div className={infosItem ? "infos-on" : "infos-of"}>{selectedItem.titre} {selectedItem.taille} cm</div>
+                <div className={infosItem === selectedItem.id ? "infos-on" : "infos-off"}>{selectedItem.titre} {selectedItem.taille} cm</div>
               </>) 
               : null
             }
