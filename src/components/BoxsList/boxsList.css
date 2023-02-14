@@ -91,6 +91,12 @@
 }
 
 .item-infos{
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 2px;
+  justify-content: center;
+  align-items: center;
   color: white;
   position: absolute;
   top: -0.8em;
@@ -98,7 +104,6 @@
   border: none;
   border-radius: 50%;
   background: rgba(84, 129, 244, 0.79);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(7.6px);
   -webkit-backdrop-filter: blur(7.6px);
   width: 2em;
@@ -112,11 +117,14 @@
 
 .infos-on{
   position: absolute;
+  text-align: center;
   top: -0.7em;
   right: -0.7em;
   border-radius: 1em;
   width: 10em;
   height: 9.5em;
+  padding: 2.5em 0.5em;
+  color: rgb(240, 240, 240);
   background: rgba(84, 129, 244, 0.79);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(7.6px);
@@ -124,6 +132,43 @@
   border: 1px solid rgba(84, 129, 244, 0.27);
   -webkit-animation: scale-in-tr 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
   animation: scale-in-tr 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.infos-on p{
+  font-size: 1.3em;
+  line-height: 1.2em;
+}
+
+.info-draw{
+  background-color: white;
+  width: 2px;
+  height: 10px;
+}
+
+.info-draw--on{
+  background-color: white;
+  width: 2px;
+  position: absolute;
+  top: 2;
+  height: 14px;
+  transform: rotate(-40deg);
+  transition: all 0.4s;
+}
+
+.info-draw-dot{
+  background-color: white;
+  width: 2px;
+  height: 2px;
+}
+
+.info-draw-dot--on{
+  background-color: white;
+  width: 2px;
+  height: 14px;
+  position: absolute;
+  top: 2;
+  transform: rotate(40deg);
+  transition: all 0.4s;
 }
 
 .selected-items-image{
@@ -185,6 +230,39 @@ p{
   100% {
     -webkit-transform: scale(1);
             transform: scale(1);
+    -webkit-transform-origin: 100% 0%;
+            transform-origin: 100% 0%;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes scale-out-tr {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-transform-origin: 100% 0%;
+            transform-origin: 100% 0%;
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    -webkit-transform-origin: 100% 0%;
+            transform-origin: 100% 0%;
+    opacity: 1;
+  }
+}
+@keyframes scale-out-tr {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-transform-origin: 100% 0%;
+            transform-origin: 100% 0%;
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
     -webkit-transform-origin: 100% 0%;
             transform-origin: 100% 0%;
     opacity: 1;

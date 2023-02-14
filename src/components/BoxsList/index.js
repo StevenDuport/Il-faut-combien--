@@ -35,6 +35,26 @@ function BoxsList() {
     dispatch(clearSelectedItems());
   };
 
+  const convertNumber = cm => {
+    let result;
+
+    if (cm >= 100000) {
+      result = (cm / 100000).toFixed(1) + " km";
+    } else if (cm >= 1000) {
+      result = (cm / 100).toFixed(0) + " m";
+    } else if (cm >= 1) {
+      result = cm.toFixed(0) + " cm";
+    } else {
+      if (cm < 0.1) {
+        result = (cm * 10).toFixed(2) + " mm";
+      } else {
+        result = (cm * 10).toFixed(0) + " mm";
+      }
+    }
+  
+    return result;
+  };
+
   useEffect(() => {
     if (selectedItems.length === 2) {
       const sizes = selectedItems.map(i => i.taille);
@@ -61,11 +81,13 @@ function BoxsList() {
                 <button 
                   className="item-infos"
                   onClick={() => toggleInfosItem(selectedItem.id)}
-                  onBlur={infosItemOff}
+                  // onBlur={infosItemOff}
                 >
-                  info
+                  <div className={infosItem === selectedItem.id ? "info-draw--on" : "info-draw"}/>
+                  <div className={infosItem === selectedItem.id ? "info-draw-dot--on" : "info-draw-dot"}/>
                 </button>
-                <div className={infosItem === selectedItem.id ? "infos-on" : "infos-off"}>{selectedItem.titre} {selectedItem.taille} cm</div>
+                <div className={infosItem === selectedItem.id ? "infos-on" : "infos-off"}><p>{selectedItem.titre}   :<br/>
+                {convertNumber(selectedItem.taille)}</p></div>
               </>) 
               : null
             }
