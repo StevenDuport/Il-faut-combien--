@@ -35,20 +35,20 @@ function BoxsList() {
     dispatch(clearSelectedItems());
   };
 
-  const convertNumber = cm => {
+  const convertNumber = size => {
     let result;
 
-    if (cm >= 100000) {
-      result = (cm / 100000).toFixed(1) + " km";
-    } else if (cm >= 1000) {
-      result = (cm / 100).toFixed(0) + " m";
-    } else if (cm >= 1) {
-      result = cm.toFixed(0) + " cm";
+    if (size >= 100000) {
+      result = (size / 100000).toFixed(1) + " km";
+    } else if (size >= 200) {
+      result = (size / 100).toFixed(0) + " m";
+    } else if (size >= 1) {
+      result = size.toFixed(0) + " cm";
     } else {
-      if (cm < 0.1) {
-        result = (cm * 10).toFixed(2) + " mm";
+      if (size < 0.1) {
+        result = (size * 10).toFixed(2) + " mm";
       } else {
-        result = (cm * 10).toFixed(0) + " mm";
+        result = (size * 10).toFixed(0) + " mm";
       }
     }
   
@@ -100,7 +100,7 @@ function BoxsList() {
           <p className="item-result">
             Il faut {ratio} {selectedItems.find(i => i.taille === Math.min(...sizes)).titre.toLowerCase()} pour atteindre la taille {selectedItems.find(i => i.taille === Math.max(...sizes)).the} {selectedItems.find(i => i.taille === Math.max(...sizes)).titre.toLowerCase()}.
           </p>
-        ) : <div className='item-result'/>
+        ) : <div className='item-result-of'/>
       }
         <div className="item-list">
           <div className="item-list-container">
@@ -110,7 +110,7 @@ function BoxsList() {
                     className={`item-button ${selectedItems.includes(item) ? 'selected' : ''}`}
                     onClick={() => handleClick(item)}
                   >
-                    <img src={item.image} className="item-image"/>
+                    <img src={item.image} className="item-image" alt={item.title}/>
                       {selectedItems.includes(item) ? <div className='counter'>{selectedItems.findIndex(i => i.id === item.id) + 1 }</div> : null}
                   </button>
                   <p>{item.titre}</p> 
